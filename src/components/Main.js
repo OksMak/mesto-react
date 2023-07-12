@@ -13,12 +13,13 @@ function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
     api.getServerData()
       .then((data) => {
         const [userInfo, initialCards] = data;
+        
         setUserName(userInfo.name);
         setUserDescription(userInfo.about);
         setUserAvatar(userInfo.avatar);
         setCards(initialCards);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(`Ошибка: ${err}`));
   }, [])
 
   return (
