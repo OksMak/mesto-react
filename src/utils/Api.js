@@ -18,13 +18,13 @@ class Api {
   }
 
 
-  getProfileInfo() {
+  _getProfileInfo() {
     return this._request('users/me', {
       headers: this._headers
     })
   }
 
-  getInitialCards() {
+  _getInitialCards() {
     return this._request('cards', {
       headers: this._headers
     })
