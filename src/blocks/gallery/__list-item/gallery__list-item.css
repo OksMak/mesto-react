@@ -1,0 +1,5 @@
+.gallery__list-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
