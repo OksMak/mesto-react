@@ -22,12 +22,12 @@ function Card({ card, link, name, likesLength, onCardClick, onCardLike, onCardDe
 
   return (
     <>
-      {isOwn && <button onClick={handleDeleteCard} type="button" className="gallery__trash"></button>}
+      {isOwn && <button onClick={handleDeleteCard} type="button" className="gallery__trash" />}
       <img src={link} className="gallery__image" onClick={handleClick} alt={name} />
       <div className="gallery__container">
         <h2 className="gallery__image-title">{name}</h2>
         <div className="gallery__like-container">
-          <button onClick={handleLikeClick} type="button" className={`gallery__like ${isLiked ? 'gallery__like_active' : ''}`}></button>
+          <button onClick={handleLikeClick} type="button" className={`gallery__like ${isLiked ? 'gallery__like_active' : ''}`} />
           <p className="gallery__like-counter">{likesLength}</p>
         </div>
       </div>

@@ -2,7 +2,7 @@ function PopupWithForm({ name, title, buttonText, isOpen, onClose, onSubmit, chi
   return (
     <section className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`} aria-label="Модальное окно">
         <div className={`popup__container popup__container_type_${name}`}>
-          <button onClick={onClose} type="button" className="popup__close"></button>
+          <button onClick={onClose} type="button" className="popup__close" />
           <h2 className="popup__title">{title}</h2>
           <form 
             action="#" 

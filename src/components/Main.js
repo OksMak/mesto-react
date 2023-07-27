@@ -15,11 +15,11 @@ function Main({ cards, onEditProfile, onAddPlace, onEditAvatar, onCardClick, onC
           </div>
           <div className="profile__info">
             <h1 className="profile__name">{currentUser.name}</h1>
-            <button onClick={onEditProfile} type="button" className="profile__button-edit"></button>
+            <button onClick={onEditProfile} type="button" className="profile__button-edit" />
             <p className="profile__speciality">{currentUser.about}</p>
           </div>
         </div>
-        <button onClick={onAddPlace} type="button" className="profile__button-add"></button>
+        <button onClick={onAddPlace} type="button" className="profile__button-add" />
       </section>
       <section className="gallery" aria-label="Галерея">
         <ul className="gallery__list">

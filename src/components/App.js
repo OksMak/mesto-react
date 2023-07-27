@@ -20,6 +20,7 @@ function App() {
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     api.getInitialCards()
@@ -88,30 +89,36 @@ function App() {
   }
 
   function handleUpdateUser(data) {
+    setIsLoading(true);
     api.editProfileInfo(data)
       .then((newUserData) => {
         setCurrentUser(newUserData);
         closeAllPopups();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateAvatar(data) {
+    setIsLoading(true);
     api.editAvatar(data)
       .then((newAvatar) => {
         setCurrentUser(newAvatar);
         closeAllPopups();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleAddPlace(data) {
+    setIsLoading(true);
     api.addNewCard(data)
       .then((newCard) => {
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error(err))
+      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -131,11 +138,13 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
         onUpdateUser={handleUpdateUser}
+        buttonText={!isLoading ? 'Сохранить' : 'Сохранение...'}
       />
       <AddPlacePopup
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
         onAddPlace={handleAddPlace}
+        buttonText={!isLoading ? 'Создать' : 'Создание...'}
       />
       <ImagePopup 
         card={selectedCard}
@@ -152,6 +161,7 @@ function App() {
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
         onUpdateAvatar={handleUpdateAvatar}
+        buttonText={!isLoading ? 'Сохранить' : 'Сохранение...'}
       />
     </CurrentUserContext.Provider>
   );
