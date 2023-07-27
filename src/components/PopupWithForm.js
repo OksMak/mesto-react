@@ -1,4 +1,4 @@
-function PopupWithForm({ name, title, buttonText, isOpen, onClose, children}) {
+function PopupWithForm({ name, title, buttonText, isOpen, onClose, onSubmit, children }) {
   return (
     <section className={`popup popup_type_${name} ${isOpen ? "popup_opened" : ""}`} aria-label="Модальное окно">
         <div className={`popup__container popup__container_type_${name}`}>
@@ -8,7 +8,8 @@ function PopupWithForm({ name, title, buttonText, isOpen, onClose, children}) {
             action="#" 
             method="post" 
             name={`${name}-form`} 
-            className="popup__form" 
+            className="popup__form"
+            onSubmit={onSubmit}
             noValidate
           >
             {children}

@@ -18,20 +18,16 @@ class Api {
   }
 
 
-  _getProfileInfo() {
+  getProfileInfo() {
     return this._request('users/me', {
       headers: this._headers
     })
   }
 
-  _getInitialCards() {
+  getInitialCards() {
     return this._request('cards', {
       headers: this._headers
     })
-  }
-
-  getServerData() {
-    return Promise.all([this._getProfileInfo(), this._getInitialCards()]);
   }
 
   removeLike(cardId) {
@@ -45,9 +41,7 @@ class Api {
     return this._request('users/me/avatar', {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({
-        avatar: data.avatarLink
-      })
+      body: JSON.stringify(data)
     })
   }
 
@@ -55,10 +49,7 @@ class Api {
     return this._request('users/me', {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify({
-        name: data.name,
-        about: data.profession
-      })
+      body: JSON.stringify(data)
     })
   }
 
@@ -68,6 +59,11 @@ class Api {
       headers: this._headers
     })
   }
+
+  changeLikeCardStatus(id, isLiked) {
+    this._status = isLiked ? this.addLike(id) : this.removeLike(id);
+    return this._status;
+}
 
   addNewCard(data) {
     return this._request('cards', {
